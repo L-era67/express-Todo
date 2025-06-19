@@ -12,5 +12,11 @@ export const selected = (req: Request, res: Response) => {
     return todo.id === Number(id);
   });
 
-  todo ? res.json({ success: true, todo }) : res.json({success:false ,message:"Олдсонгүй"});
+  todo
+    ? res.json({
+        success: true,
+        message: "UURUU UURIIGUU HUURJ BOLOHGUI SHUU YG ODOO HII CHI CHADNAA😮‍💨🔥",
+        todo,
+      })
+    : res.status(404).json({ success: false, message: "Олдсонгүй🧐" });
 };

@@ -9,6 +9,7 @@ export const updatedTodo = (req: Request, res:Response)=>{
   const parsedTodo = JSON.parse(updatedTodo);
 
   const foundedUser = parsedTodo.find((todo:any)=>todo.id === Number(id));
+
   if(!foundedUser){
     res.json({success:false, message:"Жагсаалт олдсонгүй"})
     return;
@@ -23,8 +24,9 @@ export const updatedTodo = (req: Request, res:Response)=>{
     }
   })
   
-  res.json(updateTodos)
+  res.json({message: "BRO sharguu bna shoo, URAGSHAA🤯⚡️",updateTodos})
 
   fs.writeFileSync("./toDo.json", JSON.stringify(updateTodos, null, 2))
   // res.send( `hiigdlee ${id}`);
+  
 }

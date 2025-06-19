@@ -31,9 +31,13 @@ export const createToDo = (req: Request, res: Response) => {
   console.log("todos", todos);
 
   try {
-    res.json({ success: true, todos });
+    res.json({
+      success: true,
+      message: "YOOUW mundag erch huchtei baina shu BRO🔥🌪",
+      todos,
+    });
     fs.writeFileSync("./toDo.json", JSON.stringify(todos, null, 2));
   } catch (error) {
-    res.send("Жагсаалтал нэмэгдсэнгүй дахин оролдоно уу!")
+    res.send("Jagsaaltad nemegdsengui dahin oruulna uu? ‼️🫨");
   }
 };

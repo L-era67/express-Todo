@@ -1,11 +1,10 @@
 import express,{Request, Response} from "express";
-import fs from "fs-extra";
-import { TodoType } from "../types/types";
-import { createToDo } from "../controller/createToDo";
-import { getAll } from "../controller/getAllToDo";
-import { selected } from "../controller/selected";
-import { deletedById } from "../controller/deletedByid";
-import { updatedTodo } from "../controller/updateToDo";
+
+import { createToDo } from "../controller/createToDo.controller";
+import { getAll } from "../controller/getAllToDo.controller";
+import { selected } from "../controller/selected.controller";
+import { deletedById } from "../controller/deletedByid.controller";
+import { updatedTodo } from "../controller/updateToDo.controller";
 
 const todoRouter = express.Router();
 

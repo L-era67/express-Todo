@@ -1,20 +1,5 @@
 [
   {
-    "id": 0.04705062951816541,
-    "desc": "SALGAJ UPDATA FUNCTION HIIW",
-    "isCompleted": false
-  },
-  {
-    "id": 0.9341800532469295,
-    "desc": "controller to-do",
-    "isCompleted": false
-  },
-  {
-    "id": 0.7426961354385717,
-    "desc": "BI TOP 1% BOLOH BOLNO",
-    "isCompleted": false
-  },
-  {
     "id": 0.9368361976174386,
     "desc": "ZA BI CHADNA",
     "isCompleted": false
@@ -22,6 +7,26 @@
   {
     "id": 0.32157698224205,
     "desc": "contoller to do",
+    "isCompleted": false
+  },
+  {
+    "id": 0.8001096512612091,
+    "desc": "SECONMD LIST",
+    "isCompleted": false
+  },
+  {
+    "id": 0.4760233200331294,
+    "desc": "FS FILEEXISTSYNC(FILE NER)",
+    "isCompleted": false
+  },
+  {
+    "id": 0.9352667752585284,
+    "desc": "fs-file system readFileSync VS fileSync(promise butsaan)",
+    "isCompleted": false
+  },
+  {
+    "id": 0.25166266979162866,
+    "desc": "fs-file system writeFileSync ene ni file uusgedeg",
     "isCompleted": false
   }
 ]
