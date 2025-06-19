@@ -1,32 +1,12 @@
 [
   {
-    "id": 0.9368361976174386,
-    "desc": "ZA BI CHADNA",
+    "id": 0.003578845637029371,
+    "desc": "fs.existfileSync(:file ner)->file system-s iim file baigaa yu gedgiig shalgan",
     "isCompleted": false
   },
   {
-    "id": 0.32157698224205,
-    "desc": "contoller to do",
-    "isCompleted": false
-  },
-  {
-    "id": 0.8001096512612091,
-    "desc": "SECONMD LIST",
-    "isCompleted": false
-  },
-  {
-    "id": 0.4760233200331294,
-    "desc": "FS FILEEXISTSYNC(FILE NER)",
-    "isCompleted": false
-  },
-  {
-    "id": 0.9352667752585284,
-    "desc": "fs-file system readFileSync VS fileSync(promise butsaan)",
-    "isCompleted": false
-  },
-  {
-    "id": 0.25166266979162866,
-    "desc": "fs-file system writeFileSync ene ni file uusgedeg",
+    "id": 0.2507046278915417,
+    "desc": "readFileSync bish readFile-g async ashiglan lib dotor hiine",
     "isCompleted": false
   }
 ]

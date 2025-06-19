@@ -10,7 +10,7 @@ app.use(express.json());
 app.use("/todos", todoRouter)
 
 app.get("/", (req: Request, res: Response) => {
-  res.send({ HELLO_GUYS: "Залхуураад байлгүй өдрийн хийх зүйлсийнхээ жагсаалтаа хий 😎🤌🏻🧠" });
+  res.send({ HELLO_GUYS: "Zalhuuraad bailgui udriin hiih zuilsiinhee jagsaaltaa hii 😎🤌🏻🧠" });
 });
 
 app.listen(port, () => {

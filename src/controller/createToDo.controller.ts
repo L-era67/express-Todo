@@ -2,12 +2,12 @@ import express, { Request, Response } from "express";
 import fs from "fs-extra";
 
 import { TodoType } from "../types/types";
+import { readTodos } from "../lib/todosJSON";
 
 let todos: TodoType[] = [];
 
-export const createToDo = (req: Request, res: Response) => {
+export const createToDo = async(req: Request, res: Response) => {
   const { desc }: { desc: string } = req.body;
-
   const uniqueId = Math.random();
 
   console.log("DESCRIPTION", desc);
@@ -15,8 +15,8 @@ export const createToDo = (req: Request, res: Response) => {
   // let toDos:TodoType[] = []
 
   if (fs.existsSync("./toDo.json")) {
-    const existingTodo = fs.readFileSync("./toDo.json", "utf8");
-
+    const existingTodo =await fs.promises.readFile("./toDo.json", "utf8");
+    // const existingTodo =await readTodos();
     if (existingTodo.trim().length > 0) {
       todos = JSON.parse(existingTodo);
     }
@@ -33,11 +33,11 @@ export const createToDo = (req: Request, res: Response) => {
   try {
     res.json({
       success: true,
-      message: "YOOUW mundag erch huchtei baina shu BRO🔥🌪",
+      message: "YOY! mundag baina shu🔥🌪",
       todos,
     });
     fs.writeFileSync("./toDo.json", JSON.stringify(todos, null, 2));
   } catch (error) {
-    res.send("Jagsaaltad nemegdsengui dahin oruulna uu? ‼️🫨");
+    res.send("Jagsaaltad nemegdsengui dahin oruulna uu? ‼🫨");
   }
 };

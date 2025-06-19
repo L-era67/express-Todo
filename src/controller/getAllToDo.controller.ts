@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
 import fs from "fs-extra";
+import { readTodos } from "../lib/todosJSON";
 
-export const getAll = (req: Request, res: Response) => {
-  const all = fs.readFileSync("./toDo.json", "utf8");
-  const todos = JSON.parse(all);
+export const getAll = async(req: Request, res: Response) => {
+  // const all =await fs.promises.readFile("./toDo.json", "utf8");
+  // const todos = JSON.parse(all);
+  const todos = await readTodos();
   
   if (todos) {
     res
