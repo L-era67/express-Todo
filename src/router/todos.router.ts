@@ -1,4 +1,4 @@
-import express,{Request, Response} from "express";
+import express, { Request, Response } from "express";
 
 import { createToDo } from "../controller/createToDo.controller";
 import { getAll } from "../controller/getAllToDo.controller";
@@ -7,8 +7,6 @@ import { deletedById } from "../controller/deletedByid.controller";
 import { updatedTodo } from "../controller/updateToDo.controller";
 
 const todoRouter = express.Router();
-
-
 
 // ADD TO-DO=> desc:
 todoRouter.post("/", createToDo);
@@ -23,6 +21,6 @@ todoRouter.get("/:id", selected);
 todoRouter.delete("/:id", deletedById);
 
 //TO-DO UPDATE
-todoRouter.put("/:id", updatedTodo)
+todoRouter.put("/:id", updatedTodo);
 
 export default todoRouter;
