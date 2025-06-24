@@ -18,7 +18,6 @@ let db: Db;
 const connectDb = async () => {
   try {
     const client = new MongoClient(url);
-
     await client.connect();
     db = client.db("sample_mflix");
     console.log("Database Connected");
@@ -27,7 +26,7 @@ const connectDb = async () => {
   }
 };
 
-app.post("/addUser", async (req: Request, res: Response) => {
+app.post("/", async (req: Request, res: Response) => {
   const { desc, isCompleted } = req.body;
 
   try {
@@ -37,68 +36,110 @@ app.post("/addUser", async (req: Request, res: Response) => {
     res.json(todo);
     // res.json((await response).insertedId.getTimestamp());
   } catch (error) {
+    res.status(400).send("Error!!!");
     console.log(error);
   }
 });
 
 app.get("/", async (req: Request, res: Response) => {
-  // const client = new MongoClient(uri);
-  // await client.connect();
+  try {
+    const responses = db.collection("toDo").find(); //find - aa todorhoilj uguugui bol bugdiin awch irne!
+    const users = await responses.toArray();
 
-  //YMAR DB-S AWAHAA BICHIJ UGNU.
-  // const db = client.db("sample_mflix");
-
-  //TUHAIN DB-D BAIGAA COLLECTION-G BICHEJ UGNU
-
-  const responses = db.collection("toDo").find(); //find - aa todorhoilj uguugui bol bugdiin awch irne!
-
-  //RESPONSE ARRAY BOLGOPJ HUWIRGAN.
-  const users = await responses.toArray();
-  // console.log("Users", users);
-
-  res.json(users);
+    if (users.length > 0) {
+      res.status(200).json(users);
+    } else {
+      res.status(404).send("hooson baina to-do nemen uu!");
+    }
+  } catch (error) {
+    res.status(500).send("Failed");
+    console.log(error);
+  }
 });
 
 app.get("/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
-  console.log("ID", id);
+  try {
+    const { id } = req.params;
+    console.log("ID", id);
+    const response = await db
+      .collection("toDo")
+      .find({ _id: new ObjectId(id) })
+      .toArray();
+    console.log("Response,", response);
 
-  const response = await db
-    .collection("toDo")
-    .find({ _id: new ObjectId(id) })
-    .toArray();
-
-  console.log("Response,", response);
-
-  if (response.length > 0) {
-    res.json({ succesfull: true, response });
+    // res.json({ success: true, response });
+    if (response.length > 0) {
+      res.json({ success: true, response });
+    } else {
+      res.status(404).json({ success: false, message: "To Do not found" });
+    }
+  } catch (error) {
+    res.status(500).send("Failed");
+    console.log(error);
   }
 });
 
 app.delete("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
-  // const { _id } = req.body;
-  console.log(id);
 
   try {
-    const response = db
+    // const response = db
+    //   .collection("toDo")
+    //   .find({ _id: new ObjectId(id) })
+    //   .toArray();
+
+    // const allTodos = await db.collection("toDo").find().toArray();
+
+    // const updatedTodos = allTodos.filter((todo) => {
+    //   console.log("TODOS OBJECT ID::", todo._id);
+    //   return todo._id !== new ObjectId(id);
+    // }); //WTF ene estoi neeree boldoggui shoo X0!!!!!
+
+    // if (!id) return res.send("id-aa oruulna");
+
+    const response = await db
       .collection("toDo")
-      .find({ _id: new ObjectId(id) })
-      .toArray();
+      .deleteOne({ _id: new ObjectId(id) });
+    console.log("DELETE:", response);
 
-    console.log("RESPONSSEEE", await response);
+    const data = {
+      _id: id,
+    };
 
-    const allTodos = await db.collection("toDo").find().toArray();
-
-    console.log("ALL TODOS ARRAY", allTodos);
-
-    // const updatedTodos = allTodos.filter((todo) => todo._id===response.);
-    const todo = await response;
-    // res.send("DELETE");
-    // res.json({ succes: true, todo });
-    res.json(allTodos)
+    if (response) {
+      res.json({ success: true, data });
+    }
   } catch (error) {
+    res.status(500).send("Failed");
     console.log("DELETE ERROR", error);
+  }
+});
+
+app.put("/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { desc, isCompleted } = req.body;
+    console.log("ID::", id);
+
+    const response = await db
+      .collection("toDo")
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { desc: desc, isCompleted: isCompleted } }
+      ); //ijil nertei uchir shuud desc gesen ch bolno;
+    console.log("UPDATE", response);
+
+    // const data = {
+    //   _id:id,
+    //   desc:desc
+    // }
+    const data = await db.collection("toDo").find().toArray();
+    if (data.length > 0) {
+    res.json(data);
+    }
+  } catch (error) {
+    res.status(500).send("Failed");
+    console.log(error);
   }
 });
 
