@@ -81,18 +81,18 @@ app.delete("/:id", async (req: Request, res: Response) => {
   console.log(id);
 
   try {
-    const response =await db
+    const response = db
       .collection("toDo")
       .find({ _id: new ObjectId(id) })
       .toArray();
 
-    console.log("RESPONSSEEE", response);
+    console.log("RESPONSSEEE", await response);
 
     const allTodos = await db.collection("toDo").find().toArray();
 
     console.log("ALL TODOS ARRAY", allTodos);
 
-    const updatedTodos = allTodos.filter((todo) => todo._id===response.);
+    // const updatedTodos = allTodos.filter((todo) => todo._id===response.);
     const todo = await response;
     // res.send("DELETE");
     // res.json({ succes: true, todo });
