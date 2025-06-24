@@ -11,8 +11,8 @@ const port = 3001;
 app.use(express.json());
 
 // app.use("/todos", todoRouter);
-
-const url = process.env.MONGO_URI!;
+const url ="mongodb+srv://Bolormaa:blackpink@cluster0.quqnudn.mongodb.net/";
+// const url = process.env.MONGO_URI!;
 let db: Db;
 
 const connectDb = async () => {
